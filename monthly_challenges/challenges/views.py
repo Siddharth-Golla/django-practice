@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 monthly_challenge = {
     "january":"Read atleast one 300+ pages book",
@@ -19,9 +20,9 @@ monthly_challenge = {
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenge[month]
+        return HttpResponse(challenge_text)
     except:
         return HttpResponseNotFound("Invalid Month")
-    return HttpResponse(challenge_text)
 
 
 def monthly_challenges_by_number(request, month):
@@ -30,7 +31,7 @@ def monthly_challenges_by_number(request, month):
         redirect_month = months[month - 1]
     except:
         return HttpResponseNotFound("Invalid Month")
-    return HttpResponseRedirect("/challenges/" + redirect_month)
+    return HttpResponseRedirect(reverse("monthly-challenge", args=[redirect_month]))
 
 
 # Same function without using redirect
