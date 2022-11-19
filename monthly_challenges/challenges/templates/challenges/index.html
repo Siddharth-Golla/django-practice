@@ -1,7 +1,15 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
+
 {% block page_title %}
 All Challenges 
-{% endblock page_title %} 
+{% endblock page_title %}
+
+
+{% block style_sheet %}
+<link rel="stylesheet" href="{% static 'challenges/style.css' %}">
+{% endblock style_sheet %}
+  
 
 {% block content %}
 <ul>
