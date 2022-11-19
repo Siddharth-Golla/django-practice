@@ -18,22 +18,18 @@ monthly_challenge = {
 }
 # Create your views here.
 def index(request):
-    list_items = ""
     months = list(monthly_challenge.keys())
-
-    for month in months:
-        month_path=reverse("monthly-challenge", args=[month])
-        list_items += f"<li><a href=\"{month_path}\">{month.capitalize()}</li>"
-    
-    response_data=f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+    context = {
+        'months': months
+    }
+    return render(request, 'challenges/index.html', context)
 
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenge[month]
         context = {
             'challenge_text': challenge_text,
-            'month_name': month.capitalize(),
+            'month_name': month,
         }
         return render(request, "challenges/challenge.html", context)
     except:
