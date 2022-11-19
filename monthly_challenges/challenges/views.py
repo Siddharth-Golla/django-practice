@@ -31,7 +31,11 @@ def index(request):
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenge[month]
-        return HttpResponse(challenge_text)
+        context = {
+            'challenge_text': challenge_text,
+            'month_name': month.capitalize(),
+        }
+        return render(request, "challenges/challenge.html", context)
     except:
         return HttpResponseNotFound("Invalid Month")
 
