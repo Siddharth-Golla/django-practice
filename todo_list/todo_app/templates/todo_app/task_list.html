@@ -5,9 +5,13 @@
 <h3>All my lists</h3>
 {% endif %}
 
+<a href="{% url 'task-create' %}">Add a Task</a>
+
 <table>
   <tr>
     <th>Items</th>
+    <th></th>
+    <th></th>
     <th></th>
   </tr>
 
@@ -15,6 +19,8 @@
   <tr>
     <td>{{task.title}}</td>
     <td><a href="{% url 'task' task.id %}">View</a></td>
+    <td><a href="{% url 'task-edit' task.id %}">Edit</a></td>
+    <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
   </tr>
 
   {% empty %}
