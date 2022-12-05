@@ -1,25 +1,20 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+
 {% block content %}
-
-
-
-
 {% if request.user.is_authenticated %}
 <p>Welcome, {{request.user}}</p>
 <a href="{% url 'logout' %}">Logout</a>
 
 {% else %}
+<p>Welcome, {{request.user}}</p>
 <a href="{% url 'login' %}">Login</a>
 
 {% endif %}
-  
-<hr>
 
-{% if object_list %}
+<hr />
+
+{% if object_list and request.user.is_authenticated %}
 <h3>All my lists</h3>
-
-{% endif %}
-
 <a href="{% url 'task-create' %}">Add a Task</a>
 <table>
   <tr>
@@ -39,6 +34,12 @@
 
   {% empty %}
   <h4>You have no lists!</h4>
-  {% endfor %}  
+  {% endfor %}
+
 </table>
+
+{% else %}
+<h3>You need to login to see your tasks</h3>
+{% endif %}
+
 {% endblock %}
