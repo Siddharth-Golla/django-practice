@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 from django.views.generic import ListView
@@ -27,12 +28,19 @@ class RegisterPage(FormView):
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
+    # Valid User registeration and login
     def form_valid(self, form):
         user = form.save()
-
         if user is not None:
             login(self.request, user)
         return super(RegisterPage, self).form_valid(form)
+
+    # Restricting authenticated user from this view
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('tasks')
+        return super(RegisterPage, self).get(*args, **kwargs)
+
 
 
 class TaskList(LoginRequiredMixin, ListView):
