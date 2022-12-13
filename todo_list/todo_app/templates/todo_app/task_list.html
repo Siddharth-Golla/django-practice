@@ -13,6 +13,13 @@
 <hr />
 
 <a href="{% url 'task-create' %}">Add a Task</a>
+
+<form method="GET">
+  <input type="text" name="search-area" value="{{search_input}}">
+  <input type="submit" value="Search">
+
+</form>
+
 {% if tasks %}
 <h3>All my tasks</h3>
 <table>
