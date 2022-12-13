@@ -6,16 +6,15 @@
 <a href="{% url 'logout' %}">Logout</a>
 
 {% else %}
-<p>Welcome, {{request.user}}</p>
 <a href="{% url 'login' %}">Login</a>
 
 {% endif %}
 
 <hr />
 
-{% if object_list and request.user.is_authenticated %}
-<h3>All my lists</h3>
 <a href="{% url 'task-create' %}">Add a Task</a>
+{% if tasks %}
+<h3>All my tasks</h3>
 <table>
   <tr>
     <th>Items</th>
@@ -23,7 +22,7 @@
     <th></th>
     <th></th>
   </tr>
-
+  {% endif %}
   {% for task in tasks %}
   <tr>
     <td>{{task.title}}</td>
@@ -33,13 +32,9 @@
   </tr>
 
   {% empty %}
-  <h4>You have no lists!</h4>
+  <h4>You have no tasks!</h4>
   {% endfor %}
 
 </table>
-
-{% else %}
-<h3>You need to login to see your tasks</h3>
-{% endif %}
 
 {% endblock %}

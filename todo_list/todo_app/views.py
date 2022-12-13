@@ -19,19 +19,29 @@ class CustomLogin(LoginView):
     def get_success_url(self) -> str:
         return reverse_lazy('tasks')
 
-class TaskList(ListView):
+class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
+
+    # User Data restriction
+    def get_context_data(self, **kwargs: any):
+        context =  super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(completed=False)
+        return context
 
 
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
 
+    
+
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = '__all__'
     success_url = reverse_lazy('tasks')
+    
 
 class TaskEdit(LoginRequiredMixin, UpdateView):
     model = Task
