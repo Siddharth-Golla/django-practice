@@ -26,6 +26,7 @@ body::before {
     -webkit-box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
     box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
     background-color: rgba(255,255,255);
+    border-radius: 5px;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -124,6 +125,7 @@ textarea {
 label {
     padding-top: 10px !important;
     display: block;
+    color: #cf4949;
 }
 
 .button {
@@ -135,4 +137,8 @@ label {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+}
+
+.form-body {
+    padding: 20px;
 }
