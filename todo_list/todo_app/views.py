@@ -11,7 +11,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from django.db.models import Q
-
 from .models import Task
 
 
@@ -53,7 +52,7 @@ class TaskList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs: any):
         context =  super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
-        context['count'] = context['tasks'].filter(completed=False)
+        context['count'] = context['tasks'].filter(completed=False).count()
 
         # Search input filtering
         search_input = self.request.GET.get('search-area') or ''
