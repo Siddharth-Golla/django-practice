@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Login form</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Login">
-</form>
 
-<p>New User? <a href="{% url 'register' %}">Register</a></P>
+<div class="header-bar" style="display: flex; align-items: center; justify-content: center;">
+    <h1>Login</h1>
+</div>
+
+<div class="form-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="button" type="submit" value="Login">
+    </form>
+
+    <p>New User? Register <a href="{% url 'register' %}" style="color: #cf4949;">Here</a></P>
+</div>
 
 {% endblock %}

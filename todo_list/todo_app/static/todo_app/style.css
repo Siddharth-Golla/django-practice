@@ -34,7 +34,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 a, p {
-    color: grey;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
@@ -72,7 +72,7 @@ a, p {
 
 .task-title a {
     margin-left: 10px;
-    color: #4b5156;
+    color: #2f3336;
 }
 
 .task-complete-icon {

@@ -1,14 +1,24 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-<h1>Register</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
+<div class="header-bar" style="display: flex; align-items: center; justify-content: center">
+    <h1>Register</h1>
+</div>
 
-    <input type="submit" value="Register">
-</form>
+<div class="form-body">
+    <form method="POST">
+        {% csrf_token %}
 
-<p>Already have an account? <a href="{% url 'login' %}">Login</a></P>
+        <label>{{form.username.label}}</label>
+        {{form.username}}
 
+        <label>{{form.password1.label}}</label>
+        {{form.password1}}
+
+        <label>{{form.password2.label}}</label>
+        {{form.password2}}
+
+        <input style="margin-top: 15px;" class="button" type="submit" value="Register" />
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}" style="color: #cf4949;">Login</a></p>
+</div>
 {% endblock %}
